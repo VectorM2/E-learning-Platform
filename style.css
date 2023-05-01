@@ -134,3 +134,11 @@ button a {
   max-width: 600px;
   background-color: #0e8388;
 }
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #0e8388 !important ; /* set the background color to green */
+  margin: 0 auto 20px;
+}

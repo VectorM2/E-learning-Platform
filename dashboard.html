@@ -16,6 +16,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
   <link rel="manifest" href="icon/site.webmanifest">
+  <script src="quizez.js" defer></script>
 
 </head>
 
@@ -41,10 +42,10 @@
               <a class="nav-link" href="features.html">Features</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="zoom.html">About</a>
+              <a class="nav-link" href="about.html">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="zoom.html">Login</a>
+              <a class="nav-link" href="login.html">Login</a>
             </li>
           </ul>
         </div>
@@ -54,34 +55,89 @@
     <!--hero section-->
 
     <div class="section container d-lg-flex py-2">
-      <div class="dashboard">
-        <h4 class="text-sm-start text-center">Dashboard</h4>
-        <div class="row">
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <h3 class="card-title">Title</h3>
-                <p class="card-text">Text</p>
+      <div class="container mt-3 min-width-700">
+        <div class="card-deck align-items-stretch">
+          <div class="row d-flex">
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">
+                  Zoom Classes
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Upcoming Zoom classes:</p>
+                  <ul>
+                    <li>Zoom Class 1 - May 5, 10:00 AM</li>
+                    <li>Zoom Class 2 - May 10, 2:00 PM</li>
+                    <li>Zoom Class 3 - May 15, 3:00 PM</li>
+                    <li>Zoom Class 3 - May 15, 3:00 PM</li>
+                  </ul>
+                  <a href="zoom.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">Join Class</a>
+                </div>
               </div>
             </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">
+                  Document Upload
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Upload your documents here:</p>
+
+                  <form>
+                    <div class="mb-3">
+                      <label for="formFile" class="form-label">Choose file</label>
+                      <input class="form-control" type="file" id="formFile">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                  </form>
+                  <hr>
+                  <p>Access study documents <a href="">here</a></P>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">
+                  Quizzes and Reports
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Take a quiz:</p>
+                  <form>
+                    <div class="mb-3">
+                      <label for="quizType" class="form-label">Select quiz type:</label>
+                      <select class="form-select" id="quizType">
+                        <option value="1">Quiz 1</option>
+                        <option value="2">Quiz 2</option>
+                        <option value="3">Quiz 3</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="quizQuestions" class="form-label">Number of questions:</label>
+                      <input class="form-control" type="number" min="1" max="10" id="quizQuestions">
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="startQuiz()">Take Quiz</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
           </div>
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <h3 class="card-title">Title</h3>
-                <p class="card-text">Text</p>
-              </div>
-            </div>
           </div>
         </div>
+
+
       </div>
 
-      <div class="graphic">
-        <img style="max-width: 350px; min-width: 250px;" src="graphics/male student graphc.png"
-          alt="enthusiastic university of limpopo student">
+      <div class="container">
+        <div id="quiz"></div>
       </div>
+
+
 
     </div>
+
 
     <!--footer-->
     <footer class="footer mt-auto py-3 bg-light shadow-sm">
@@ -91,6 +147,25 @@
 
     </footer>
   </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="quizModalLabel">Quiz</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="quiz"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>

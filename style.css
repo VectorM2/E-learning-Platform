@@ -128,3 +128,9 @@ button a {
   background-position: center center;
   background-size: cover;
 }
+
+.dashboard{
+  min-width: 600px;
+  max-width: 600px;
+  background-color: #0e8388;
+}

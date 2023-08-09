@@ -2,16 +2,8 @@
  --primary: #0e8388;
 }
 .nav-link {
- display: block;
  padding: 0.5rem 0.5rem !important;
 }
-
-
-
-.navbar{
- max-height: 70px !important;
-}
-
 
 .signup{
  border:  2px solid gray;
@@ -30,21 +22,8 @@ font-weight: 600;
 }
 
 
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
-}
-.h-custom {
-height: calc(100% - 73px);
-}
-@media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
-}
+
+
 
 
 .submit{
@@ -66,17 +45,6 @@ height: 100%;
  transition: 0.2s;
 }
 
-nav{
- -webkit-box-flex: 1;
--moz-box-flex: 1;
-box-flex: 1;
--webkit-flex: 1;
--moz-flex: 1;
--ms-flex: 1;
-flex: 1;
-font-size: 14px;
-padding: 0 20px;
-}
 
 
 .btn-primary{

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estudent Platform</title>
+  <title>e-student platform</title>
   <link href="style.css" rel="stylesheet">
   <link href="plugins/css/bootstrap.css" rel="stylesheet">
   <script src="plugins/js/bootstrap.bundle.js"></script>
@@ -17,6 +17,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
   <link rel="manifest" href="icon/site.webmanifest">
   <script src="quizez.js" defer></script>
+  <script type="module" src="dashboard.js" defer></script>
 
 </head>
 
@@ -26,7 +27,7 @@
     <!--header and navbar-->
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="#"><img src="graphics/default_logo.png" alt="" width="120rem"
+        <a class="navbar-brand" href="#"><img src="graphics/logo.png" alt="" width="200rem"
             class="d-inline-block align-text-top"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,19 +37,21 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" id="userName">VectorM</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="features.html">Features</a>
+              <a class="nav-link" id="userEmail">VectorM</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+             
+              
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login.html">Login</a>
+              <a class="nav-link" href="login.html">Logout</a>
             </li>
           </ul>
-        </div>
+          <a class="nav-link"><img id="userProfilePicture"></img></a>
+        </div> 
       </div>
     </nav>
 
@@ -142,7 +145,7 @@
     <!--footer-->
     <footer class="footer mt-auto py-3 bg-light shadow-sm">
       <div class="container">
-        <span class="text-muted">All rights reserved | Copyrights &copy; E-student 2023</span>
+        <span class="text-muted">All rights reserved | Copyrights &copy; e-student 2023</span>
       </div>
 
     </footer>
@@ -169,3 +172,41 @@
 </body>
 
 </html>
+
+<style>
+  #userProfilePicture {
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+  border: blue solid 2px;
+}
+
+#userProfilePicture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#userProfilePicture::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#userProfilePicture:hover {
+  transform: scale(1.1);
+}
+
+#userProfilePicture:hover::before {
+  opacity: 1;
+}
+  
+</style>

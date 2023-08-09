@@ -1,104 +1,112 @@
-<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudent Platform</title>
-    <link href="style.css" rel="stylesheet">
-    <link href="plugins/css/bootstrap.css" rel="stylesheet">
-    <script src="plugins/js/bootstrap.bundle.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet">
-<link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-<link rel="manifest" href="icon/site.webmanifest">
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e-student</title>
+  <link href="nav.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <link href="plugins/css/bootstrap.css" rel="stylesheet">
+  <script src="plugins/js/bootstrap.bundle.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+  <link rel="manifest" href="icon/site.webmanifest">
+  <link rel="stylesheet" href="login.css">
+  <script type="module" src="signup.js" defer></script>
 </head>
+
 <body>
+  <section>
+    <!--header and navbar-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="graphics/logo.png" alt="" width="200rem"
+            class="d-inline-block align-text-top"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <!--header and navbar-->
-  <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="#"><img src="graphics/default_logo.png" alt="" width="120rem"
-          class="d-inline-block align-text-top"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="features.html">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="features.html">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link signup" href="login.html">Login</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-      <!--hero section-->
+    <!--hero section-->
 
-      <div class="section container d-lg-flex py-2">
-       <div class="container my-5">
+    <div class="section container d-lg-flex py-2">
+      <div class="container my-2">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h3 class="card-title text-center mb-4">Sign Up</h3>
-                        <form action="register.php" method="post">
-                         <div class="mb-3">
-                             <label for="name" class="form-label">Name</label>
-                             <input type="text" class="form-control" name="name" id="name" required>
-                         </div>
-                         <div class="mb-3">
-                             <label for="email" class="form-label">Email address</label>
-                             <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
-                         </div>
-                         <div class="mb-3">
-                             <label for="password" class="form-label">Password</label>
-                             <input type="password" class="form-control" id="password" name="password" required>
-                         </div>
-                         <div class="mb-3">
-                             <label for="confirm-password" class="form-label">Confirm Password</label>
-                             <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
-                         </div>
-                        
-                         <div class="d-grid gap-2">
-                             <button type="submit" class="btn btn-primary">Sign up</button>
-                         </div>
-                     </form>
-                      
-                    </div>
+          <div class="col-md-6">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h4 class="card-title text-center mb-4">Register with email</h4>
+                <form>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" required>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary submit" id="register"><a href="dashboard.html">Register</a></button>
+                  </div>
+                </form>
+                <div class="text-center mt-3">
+                  <p>Already have an account? <a href="login.html">Sign in</a></p>
                 </div>
+                <h5 class="text-center">or</h5>
+                <div class="text-center mt-3">
+                  <button id="google" class="btn btn-primary">Sign up with Google</button>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-
-<div class="graphic">
-  <img style="max-width: 400px; min-width: 250px;" src="graphics/male student graphc.png" alt="enthusiastic university of limpopo student">
-</div>
-
       </div>
 
-      <!--footer-->
-      <footer class="footer mt-auto py-3 bg-light shadow-sm">
-        <div class="container">
-          <span class="text-muted">All rights reserved | Copyrights &copy; E-student 2023</span>
-        </div>
+      <div class="graphic">
+        <img style="max-width: 350px; min-width: 250px;" src="graphics/male student graphc.png"
+          alt="enthusiastic university of limpopo student">
+      </div>
 
-      </footer>
+    </div>
+
+    <!--footer-->
+    <footer class="footer mt-auto py-3  shadow-sm">
+      <div class="container">
+        <span class="text-muted ">All rights reserved | Copyrights &copy; e-student 2023</span>
+      </div>
+
+    </footer>
+
+  </section>
 </body>
+
 </html>

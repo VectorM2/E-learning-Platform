@@ -1,0 +1,84 @@
+:root {
+ --primary: #0e8388;
+}
+.nav-link {
+ display: block;
+ padding: 0.5rem 0.5rem !important;
+}
+
+
+
+.navbar{
+ max-height: 70px !important;
+}
+
+
+.signup{
+ border:  2px solid gray;
+ border-radius: 3px;
+ display: inline-flex !important;
+align-items: center;
+justify-content: center;
+font-weight: 600;
+}
+.signup:hover{
+ background-color: rgba(118, 118, 118, 0.42);
+ color: white;
+}
+.signup:active{
+ transform: scale(0.95);
+}
+
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+
+.submit{
+ background-color: var(--primary) !important;
+ border: none !important;
+ outline: none !important;
+}
+
+.submit:hover{
+ color: white !important;
+ background-color: #0b6c70f7 !important;
+}
+
+.submit:active{
+ outline: none !important;
+ border: none !important;
+ scrollbar-highlight-color: #0e8388 !important;
+ transform: scale(0.95);
+ transition: 0.2s;
+}
+
+nav{
+ -webkit-box-flex: 1;
+-moz-box-flex: 1;
+box-flex: 1;
+-webkit-flex: 1;
+-moz-flex: 1;
+-ms-flex: 1;
+flex: 1;
+font-size: 14px;
+padding: 0 20px;
+}
+
+
+.btn-primary{
+ background-color: #0e8388 !important;
+}

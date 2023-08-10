@@ -1,0 +1,54 @@
+
+<div class="col-md-4">
+              <div class="card">
+                <div class="card-header">
+                  Document Upload
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Upload your documents here:</p>
+                  <form>
+                    <div class="mb-3">
+                    <input
+					      type="file"
+						  class="inputfile"
+						  id="fileInp"
+						  onchange="getFile(event)"
+						  accept="document/pdf, document/txt"
+					/>
+					<label for="fileInp"></label>
+					<button>Upload Document</button>
+					<div class="bar">
+					    <div class="progress"></div>
+					</div>					  
+                </div>
+              </div>
+            </div>
+
+
+<div class="document-grid">
+    <h2>Uploaded Documents</h2>
+    <div class="document-row">
+        <div class="document-cell">
+            <a href="document1.pdf" target="_blank">Document 1</a>
+        </div>
+        <div class="document-cell">
+            <a href="document2.docx" target="_blank">Document 2</a>
+        </div>
+        <div class="document-cell">
+            <a href="document3.txt" target="_blank">Document 3</a>
+        </div>
+    </div>
+    <div class="document-row"> 
+        <div class="document-cell">
+            <a href="document4.pdf" target="_blank">Document 4</a>
+        </div>
+        <div class="document-cell">
+            <a href="document5.docx" target="_blank">Document 5</a>
+        </div>
+        <div class="document-cell">
+            <a href="document6.txt" target="_blank">Document 6</a>
+        </div>
+    </div>
+</div>
+
+

@@ -3,112 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Upload and Display</title>
-    
+    <title>Uploaded Documents</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            background-color: #f2f2f2;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             text-align: center;
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
 
-        #fileInput {
-            display: none;
+        #document-list {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
         }
 
-        .upload-btn {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 10px;
-            cursor: pointer;
+        .uploaded-document {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
-        .document-block {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px;
-            background-color: white;
-            display: inline-block;
-            width: 200px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .uploaded-document .document-name {
+            font-weight: bold;
         }
 
-        a {
-            text-decoration: none;
-            color: #333;
-            display: block;
+        .uploaded-document .upload-date {
+            color: #777;
         }
     </style>
 </head>
 <body>
-    <h1>Document Upload and Display</h1>
-    
-    <input type="file" id="fileInput">
-    <button onclick="uploadFile()">Upload</button>
-    
-    <div id="documentBlocks"></div>
-
-    <!-- Firebase scripts here -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js"></script>
+    <div class="container">
+        <h1>Uploaded Documents</h1>
+        <form id="upload-form">
+            <input type="file" id="file-input" accept=".pdf, .doc, .docx">
+            <button type="submit">Upload</button>
+        </form>
+        <div id="document-list">
+            <!-- Uploaded documents will be displayed here -->
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-storage.js"></script>
     <script>
-        // Firebase configuration here
+        // Initialize Firebase with your configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
+  authDomain: "e-students-764ac.firebaseapp.com",
+  projectId: "e-students-764ac",
+  storageBucket: "e-students-764ac.appspot.com",
+  messagingSenderId: "458914599582",
+  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
+};
+
+        };
 
         firebase.initializeApp(firebaseConfig);
 
+        // Reference to Firebase storage
         const storage = firebase.storage();
-        const storageRef = storage.ref();
 
-        function uploadFile() {
-            const fileInput = document.getElementById('fileInput');
+        const uploadForm = document.getElementById('upload-form');
+        const fileInput = document.getElementById('file-input');
+        const documentList = document.getElementById('document-list');
+
+        uploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
             const file = fileInput.files[0];
 
             if (file) {
-                const fileName = file.name;
-                const fileRef = storageRef.child(fileName);
-
-                fileRef.put(file).then(() => {
-                    displayDocuments();
-                }).catch(error => {
-                    console.error("Error uploading file:", error);
+                const storageRef = storage.ref(`uploads/${file.name}`);
+                storageRef.put(file).then(() => {
+                    displayUploadedDocuments();
                 });
             }
-        }
+        });
 
-        function displayDocuments() {
-            const documentBlocks = document.getElementById('documentBlocks');
-            documentBlocks.innerHTML = "";
+        function displayUploadedDocuments() {
+            documentList.innerHTML = ''; // Clear the list
 
+            const storageRef = storage.ref('uploads');
             storageRef.listAll().then((result) => {
                 result.items.forEach((item) => {
-                    item.getDownloadURL().then((url) => {
-                        const block = document.createElement('div');
-                        block.classList.add('document-block');
-                        block.innerHTML = `
-                            <a href="${url}" target="_blank">${item.name}</a>
+                    item.getMetadata().then((metadata) => {
+                        const documentItem = document.createElement('div');
+                        documentItem.classList.add('uploaded-document');
+                        documentItem.innerHTML = `
+                            <div class="document-name">${item.name}</div>
+                            <div class="upload-date">${new Date(metadata.timeCreated).toLocaleDateString()}</div>
                         `;
-                        documentBlocks.appendChild(block);
+                        documentList.appendChild(documentItem);
                     });
                 });
-            }).catch(error => {
-                console.error("Error getting document list:", error);
             });
         }
-
-        displayDocuments();
     </script>
 </body>
 </html>
+

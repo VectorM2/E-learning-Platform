@@ -734,8 +734,8 @@ function startQuiz() {
  const numQuestions = parseInt(quizQuestionsInput);
 
  // Make sure the number of questions is valid
- if (numQuestions < 1 || numQuestions > 10) {
-   alert('Please enter a number between 1 and 10.');
+ if (numQuestions < 5 || numQuestions > 50) {
+   alert('Please enter a number between 5 and 50.');
    return;
  }
 

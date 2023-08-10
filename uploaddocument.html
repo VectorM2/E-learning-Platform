@@ -1,77 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>e-student platform</title>
-  <link href="style.css" rel="stylesheet">
-  <link href="plugins/css/bootstrap.css" rel="stylesheet">
-  <script src="plugins/js/bootstrap.bundle.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-  <link rel="manifest" href="icon/site.webmanifest">
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Upload and Display</title>
 </head>
 <body>
-<div class="col-md-4">
-              <div class="card">
-                <div class="card-header">
-                  Document Upload
-                </div>
-                <div class="card-body">
-                  <p class="card-text">Upload your documents here:</p>
-                  <form>
-                    <div class="mb-3">
-                    <input
-			  type="file"
-			  class="inputfile"
-			  id="fileInp"
-			  onchange="getFile(event)"
-			  accept="document/pdf, document/txt"
-		    />
-			<label for="fileInp"></label>
-			<button>Upload Document</button>
-			<div class="bar">
-			<div class="progress"></div>
-			</div>
-			 
-			    
-                </div>
-              </div>
-            </div>
-	
+    <h1>Document Upload and Display</h1>
+    
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Upload</button>
+    
+    <div id="documentBlocks"></div>
 
+    <!-- Add Firebase configuration here -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js"></script>
+    <script>
+	    
+const firebaseConfig = {
+  apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
+  authDomain: "e-students-764ac.firebaseapp.com",
+  projectId: "e-students-764ac",
+  storageBucket: "e-students-764ac.appspot.com",
+  messagingSenderId: "458914599582",
+  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
+};
 
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-	
-<div class="document-grid">
-    <h2>Uploaded Documents</h2>
-    <div class="document-row">
-        <div class="document-cell">
-            <a href="document1.pdf" target="_blank">Document 1</a>
-        </div>
-        <div class="document-cell">
-            <a href="document2.docx" target="_blank">Document 2</a>
-        </div>
-        <div class="document-cell">
-            <a href="document3.txt" target="_blank">Document 3</a>
-        </div>
-    </div>
-    <div class="document-row"> 
-        <div class="document-cell">
-            <a href="document4.pdf" target="_blank">Document 4</a>
-        </div>
-        <div class="document-cell">
-            <a href="document5.docx" target="_blank">Document 5</a>
-        </div>
-        <div class="document-cell">
-            <a href="document6.txt" target="_blank">Document 6</a>
-        </div>
-    </div>
-</div>
+        const storage = firebase.storage();
+        const storageRef = storage.ref();
 
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const fileName = file.name;
+                const fileRef = storageRef.child(fileName);
+
+                fileRef.put(file).then(() => {
+                    displayDocuments();
+                }).catch(error => {
+                    console.error("Error uploading file:", error);
+                });
+            }
+        }
+
+        function displayDocuments() {
+            const documentBlocks = document.getElementById('documentBlocks');
+            documentBlocks.innerHTML = ""; // Clear previous blocks
+
+            storageRef.listAll().then((result) => {
+                result.items.forEach((item) => {
+                    item.getDownloadURL().then((url) => {
+                        const block = document.createElement('div');
+                        block.classList.add('document-block');
+                        block.innerHTML = `
+                            <a href="${url}" target="_blank">${item.name}</a>
+                        `;
+                        documentBlocks.appendChild(block);
+                    });
+                });
+            }).catch(error => {
+                console.error("Error getting document list:", error);
+            });
+        }
+
+        // Initial display
+        displayDocuments();
+    </script>
 </body>
+</html>

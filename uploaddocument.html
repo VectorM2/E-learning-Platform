@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Upload and Display</title>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            background-color: #f2f2f2;
         }
 
         h1 {
@@ -36,13 +38,18 @@
         .document-block {
             border: 1px solid #ddd;
             padding: 10px;
-            margin: 10px 0;
-            background-color: #f9f9f9;
+            margin: 10px;
+            background-color: white;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         a {
             text-decoration: none;
             color: #333;
+            display: block;
         }
     </style>
 </head>
@@ -50,41 +57,35 @@
     <h1>Document Upload and Display</h1>
     
     <input type="file" id="fileInput">
-    <button class="upload-btn" onclick="chooseFile()">Choose File</button>
+    <button onclick="uploadFile()">Upload</button>
     
     <div id="documentBlocks"></div>
 
+    <!-- Firebase scripts here -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js"></script>
     <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
-  authDomain: "e-students-764ac.firebaseapp.com",
-  projectId: "e-students-764ac",
-  storageBucket: "e-students-764ac.appspot.com",
-  messagingSenderId: "458914599582",
-  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
-};
+        // Firebase configuration here
 
         firebase.initializeApp(firebaseConfig);
 
         const storage = firebase.storage();
         const storageRef = storage.ref();
 
-        function chooseFile() {
+        function uploadFile() {
             const fileInput = document.getElementById('fileInput');
-            fileInput.click();
-        }
+            const file = fileInput.files[0];
 
-        function uploadFile(file) {
-            const fileName = file.name;
-            const fileRef = storageRef.child(fileName);
+            if (file) {
+                const fileName = file.name;
+                const fileRef = storageRef.child(fileName);
 
-            fileRef.put(file).then(() => {
-                displayDocuments();
-            }).catch(error => {
-                console.error("Error uploading file:", error);
-            });
+                fileRef.put(file).then(() => {
+                    displayDocuments();
+                }).catch(error => {
+                    console.error("Error uploading file:", error);
+                });
+            }
         }
 
         function displayDocuments() {
@@ -107,15 +108,7 @@ const firebaseConfig = {
             });
         }
 
-        document.getElementById('fileInput').addEventListener('change', function() {
-            const selectedFile = this.files[0];
-            if (selectedFile) {
-                uploadFile(selectedFile);
-            }
-        });
-
         displayDocuments();
     </script>
 </body>
 </html>
-

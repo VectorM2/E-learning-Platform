@@ -1,5 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- Include Firebase SDK -->
+  <!-- Include Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app-check.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const firebaseConfig = {
+        // Your firebase configuration object
+      };
+
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+
+      // Initialize Firebase App Check
+      const appCheck = firebase.appCheck().activate('6LdOc5cnAAAAAFMO5eTzqH7N29k8L95Mdrh_Wu6D', true);
+
+      // Use the App Check Token
+      appCheck.onTokenChanged((token) => {
+        if (token) {
+          // Use the token in your requests to the server
+        }
+      });
+    });
+  </script>
+
+  <style>
+    /* Adjust the position of the reCAPTCHA badge */
+    .firebase-app-check-badge {
+         body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    }
+  </style>
 
 <head>
   <meta charset="UTF-8">

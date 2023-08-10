@@ -11,7 +11,6 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -20,33 +19,22 @@
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
         h1 {
             text-align: center;
         }
-
-        form {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
         #document-list {
             border-top: 1px solid #ccc;
             padding-top: 20px;
         }
-
         .uploaded-document {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
-
         .uploaded-document .document-name {
             font-weight: bold;
         }
-
         .uploaded-document .upload-date {
             color: #777;
         }
@@ -55,27 +43,16 @@
 <body>
     <div class="container">
         <h1>Uploaded Documents</h1>
-        <form id="upload-form">
-            <input type="file" id="file-input" accept=".pdf, .doc, .docx">
-            <button type="submit">Upload</button>
-        </form>
         <div id="document-list">
             <!-- Uploaded documents will be displayed here -->
         </div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"></script>
     <script>
         // Initialize Firebase with your configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
-  authDomain: "e-students-764ac.firebaseapp.com",
-  projectId: "e-students-764ac",
-  storageBucket: "e-students-764ac.appspot.com",
-  messagingSenderId: "458914599582",
-  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
-};
-
+        const firebaseConfig = {
+            // Your Firebase configuration here...
         };
 
         firebase.initializeApp(firebaseConfig);
@@ -83,28 +60,12 @@ const firebaseConfig = {
         // Reference to Firebase storage
         const storage = firebase.storage();
 
-        const uploadForm = document.getElementById('upload-form');
-        const fileInput = document.getElementById('file-input');
         const documentList = document.getElementById('document-list');
-
-        uploadForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const file = fileInput.files[0];
-
-            if (file) {
-                const storageRef = storage.ref(`uploads/${file.name}`);
-                storageRef.put(file).then(() => {
-                    displayUploadedDocuments();
-                });
-            }
-        });
-        
-        displayUploadedDocuments();
 
         function displayUploadedDocuments() {
             documentList.innerHTML = ''; // Clear the list
 
-            const storageRef = storage.ref('uploads');
+            const storageRef = storage.ref('Document Upload'); // Use the correct path
             storageRef.listAll().then((result) => {
                 result.items.forEach((item) => {
                     item.getMetadata().then((metadata) => {
@@ -113,13 +74,18 @@ const firebaseConfig = {
                         documentItem.innerHTML = `
                             <div class="document-name">${item.name}</div>
                             <div class="upload-date">${new Date(metadata.timeCreated).toLocaleDateString()}</div>
+                            <a href="${metadata.fullPath}" target="_blank">View Document</a>
                         `;
                         documentList.appendChild(documentItem);
                     });
                 });
             });
         }
+
+        // Call displayUploadedDocuments initially to populate the list
+        displayUploadedDocuments();
     </script>
 </body>
 </html>
+
 

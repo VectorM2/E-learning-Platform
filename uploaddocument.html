@@ -52,7 +52,14 @@
     <script>
         // Initialize Firebase with your configuration
         const firebaseConfig = {
-            // Your Firebase configuration here...
+           const firebaseConfig = {
+  apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
+  authDomain: "e-students-764ac.firebaseapp.com",
+  projectId: "e-students-764ac",
+  storageBucket: "e-students-764ac.appspot.com",
+  messagingSenderId: "458914599582",
+  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
+};
         };
 
         firebase.initializeApp(firebaseConfig);
@@ -65,7 +72,7 @@
         function displayUploadedDocuments() {
             documentList.innerHTML = ''; // Clear the list
 
-            const storageRef = storage.ref('Document Upload'); // Use the correct path
+            const storageRef = storage.ref('https://console.firebase.google.com/project/e-students-764ac/storage/e-students-764ac.appspot.com/files/~2FDocument%20Upload/'); // Use the correct path
             storageRef.listAll().then((result) => {
                 result.items.forEach((item) => {
                     item.getMetadata().then((metadata) => {

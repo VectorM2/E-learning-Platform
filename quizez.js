@@ -44,8 +44,6 @@ const quizQuestions = [
   choices: ['A collection of data items, all of the same type, accessed using a common name.', 'A container for storing data values.', 'A data type that can hold only one value at a time.'],
   answer: 'A collection of data items, all of the same type, accessed using a common name.'
  },
-
- 
  // Add more questions here...
 ];
 

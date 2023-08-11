@@ -49,7 +49,7 @@ onAuthStateChanged(auth, (user) => {
   } else {
     // User is not signed in, redirect to the registration page
     alert("Create Account & login");
-    window.location.href = "/signup.html";
+    window.location.href = "/register.html";
   }
 });
 

@@ -1,51 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-<!-- Include Firebase SDK -->
-  <!-- Include Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app-check.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const firebaseConfig = {
-  apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
-  authDomain: "e-students-764ac.firebaseapp.com",
-  projectId: "e-students-764ac",
-  storageBucket: "e-students-764ac.appspot.com",
-  messagingSenderId: "458914599582",
-  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
-};
-
-      // Initialize Firebase
-      const app = firebase.initializeApp(firebaseConfig);
-
-      // Initialize Firebase App Check
-      const appCheck = firebase.appCheck().activate('6LdOc5cnAAAAAFMO5eTzqH7N29k8L95Mdrh_Wu6D', true);
-
-      // Use the App Check Token
-      appCheck.onTokenChanged((token) => {
-        if (token) {
-          // Use the token in your requests to the server
-        }
-      });
-    });
-  </script>
-
-  <style>
-    /* Adjust the position of the reCAPTCHA badge */
-    .firebase-app-check-badge {
-         body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    }
-  </style>
-
-  
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,7 +22,6 @@
 </head>
 
 <body>
-  <h1><center>Computer Science Portal</center> </h1>
   <section>
 
     <!--header and navbar-->
@@ -140,7 +94,7 @@
                     <button type="submit" class="btn btn-primary">Upload</button>
                   </form>
                   <hr>
-                  <p>Access study documents <a href="uploaddocument.html">here</a></P>
+                  <p>Access study documents <a href="">here</a></P>
                 </div>
               </div>
             </div>
@@ -155,9 +109,9 @@
                     <div class="mb-3">
                       <label for="quizType" class="form-label">Select quiz type:</label>
                       <select class="form-select" id="quizType">
-                        <option value="1">Computer Networking</option>
-                        <option value="2">Artficial Intelligence</option>
-                        <option value="3">Combined Quiz</option>
+                        <option value="1">Quiz 1</option>
+                        <option value="2">Quiz 2</option>
+                        <option value="3">Quiz 3</option>
                       </select>
                     </div>
                     <div class="mb-3">
@@ -203,7 +157,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="quizModalLabel">Quiz</h5>
+          <h5 class="modal-title" id="quizModalLabel">COMPUTER SCIENCE Quiz</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

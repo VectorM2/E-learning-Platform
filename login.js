@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider ,signInWithPopup } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider ,signInWithPopup ,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 
@@ -32,7 +32,7 @@ const login= document.getElementById("login");
 login.addEventListener("click", function (event) {
  event.preventDefault()
 
- const email = document.getElementById("email").value;
+ let email = document.getElementById("email").value;
  const password = document.getElementById("password").value;
 
  signInWithEmailAndPassword(auth, email, password)
@@ -82,3 +82,29 @@ alert(errorMessage)
 
  }
 )
+
+//reset password .
+
+ const reset = document.getElementById("resetPassword")
+ reset.addEventListener("click",function(){
+  let email = document.getElementById("email").value;
+  console.log(email)
+if(email == "null"){
+  alert("Please Enter Your email!!")
+} else{
+
+  sendPasswordResetEmail(auth, email)
+  .then(() => {
+    // Password reset email sent!
+    alert("Password reset email sent!")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage)
+  });
+}
+
+
+
+ })

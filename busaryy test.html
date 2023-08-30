@@ -1,0 +1,47 @@
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, push, set } from "firebase/database";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  // ... (your Firebase config data)
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase();
+
+// Function to create a new bursary item
+function createBursaryItem() {
+  const bursaryItem = document.createElement("div");
+  bursaryItem.className = "bursary";
+  bursaryItem.innerHTML = `
+    <h2 contenteditable="true">Bursary Title</h2>
+    <p contenteditable="true">Description of the bursary.</p>
+    <input type="text" placeholder="Apply Link URL">
+    <button class="apply-btn">Apply</button>
+  `;
+
+  const applyButton = bursaryItem.querySelector(".apply-btn");
+  applyButton.addEventListener("click", () => {
+    const urlInput = bursaryItem.querySelector("input[type='text']");
+    const linkURL = urlInput.value;
+    if (linkURL) {
+      // Store the URL in the database
+      const newBursaryRef = push(ref(db, "bursaries"));
+      set(newBursaryRef, { title: "Bursary Title", description: "Description of the bursary", applyLink: linkURL });
+    } else {
+      alert("Please provide a valid URL.");
+    }
+  });
+
+  return bursaryItem;
+}
+
+// Function to add a new bursary item to the container
+function addBursary() {
+  const bursariesContainer = document.getElementById("bursaries-container");
+  const newBursary = createBursaryItem();
+  bursariesContainer.appendChild(newBursary);
+}
+
+const addBursaryButton = document.getElementById("add-bursary");
+addBursaryButton.addEventListener("click", addBursary);

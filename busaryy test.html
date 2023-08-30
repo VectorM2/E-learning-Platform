@@ -2,9 +2,9 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, set } from "firebase/database";
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  // ... (your Firebase config data)
-};
+const const bursaryKey = "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4";
+const newBursaryRef = ref(db, `bursaries/${bursaryKey}`);
+set(newBursaryRef, { title: "Bursary Title", description: "Description of the bursary", applyLink: linkURL });
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();

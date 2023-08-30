@@ -1,10 +1,85 @@
-import { initializeApp } from "firebase/app";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bursary Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .bursary {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .bursary h2 {
+      margin-top: 0;
+    }
+
+    .bursary p {
+      color: #555;
+    }
+
+    .apply-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .apply-btn:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      width: 100%;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bursary Application Portal</h1>
+    <div id="bursaries-container">
+      <!-- Bursary items will be added here -->
+    </div>
+    <button id="add-bursary">Add Bursary</button>
+  </div>
+
+  <script>
+    import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, set } from "firebase/database";
 
 // Your web app's Firebase configuration
-const const bursaryKey = "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4";
-const newBursaryRef = ref(db, `bursaries/${bursaryKey}`);
-set(newBursaryRef, { title: "Bursary Title", description: "Description of the bursary", applyLink: linkURL });
+const firebaseConfig = {
+ apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
+  authDomain: "e-students-764ac.firebaseapp.com",
+  databaseURL: "https://e-students-764ac-default-rtdb.firebaseio.com",
+  projectId: "e-students-764ac",
+  storageBucket: "e-students-764ac.appspot.com",
+  messagingSenderId: "458914599582",
+  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
@@ -45,3 +120,7 @@ function addBursary() {
 
 const addBursaryButton = document.getElementById("add-bursary");
 addBursaryButton.addEventListener("click", addBursary);
+
+  </script>
+</body>
+</html>

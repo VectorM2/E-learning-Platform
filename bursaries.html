@@ -1,15 +1,98 @@
-import { initializeApp } from "firebase/app";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bursary Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .bursary {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .bursary h2 {
+      margin-top: 0;
+    }
+
+    .bursary p {
+      color: #555;
+    }
+
+    .apply-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .apply-btn:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      width: 100%;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .share-btn {
+      background-color: #29b6f6;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .share-btn:hover {
+      background-color: #20a0d9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bursary Application Portal</h1>
+    <div id="bursaries-container">
+      <!-- Bursary items will be added here -->
+    </div>
+    <button id="add-bursary">Add Bursary</button>
+  </div>
+
+  <script>
+    import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, set } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
-authDomain: "e-students-764ac.firebaseapp.com",
-databaseURL: "https://e-students-764ac-default-rtdb.firebaseio.com",
-projectId: "e-students-764ac",
-storageBucket: "e-students-764ac.appspot.com",
-messagingSenderId: "458914599582",
-appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
+ apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
+  authDomain: "e-students-764ac.firebaseapp.com",
+  databaseURL: "https://e-students-764ac-default-rtdb.firebaseio.com",
+  projectId: "e-students-764ac",
+  storageBucket: "e-students-764ac.appspot.com",
+  messagingSenderId: "458914599582",
+  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -17,43 +100,11 @@ const db = getDatabase();
 
 // Function to create a new bursary item
 function createBursaryItem() {
-const bursaryItem = document.createElement("div");
-bursaryItem.className = "bursary";
-bursaryItem.innerHTML = <h2 contenteditable="true">Bursary Title</h2> <p contenteditable="true">Description of the bursary.</p> <input type="text" placeholder="Apply Link URL"> <button class="apply-btn">Apply</button> <button class="share-btn">Share</button>;
+  const bursaryItem = document.createElement("div");
+  bursaryItem.className = "bursary";
+  bursaryItem.innerHTML = `
+    <h2 contenteditable="true">Bursary Title</h2>
+    <p contenteditable="true">Description of the bursary.</p>
+    <input type="text" placeholder="Apply Link URL">
+    <button class="apply-btn">Apply
 
-const applyButton = bursaryItem.querySelector(".apply-btn");
-applyButton.addEventListener("click", () => {
-const urlInput = bursaryItem.querySelector("input[type='text']");
-const linkURL = urlInput.value;
-if (linkURL) {
-// Store the URL in the database
-const newBursaryRef = push(ref(db, "bursaries"));
-set(newBursaryRef, { title: "Bursary Title", description: "Description of the bursary", applyLink: linkURL });
-} else {
-alert("Please provide a valid URL.");
-}
-});
-
-const shareButton = bursaryItem.querySelector(".share-btn");
-shareButton.addEventListener("click", () => {
-// Get the bursary data from the database
-const bursaryRef = ref(db, "bursaries/" + newBursaryRef.key);
-const bursaryData = await bursaryRef.get();
-
-// Share the bursary data with everyone
-const shareRef = ref(db, "shared-bursaries");
-set(shareRef, bursaryData);
-});
-
-return bursaryItem;
-}
-
-// Function to add a new bursary item to the container
-function addBursary() {
-const bursariesContainer = document.getElementById("bursaries-container");
-const newBursary = createBursaryItem();
-bursariesContainer.appendChild(newBursary);
-}
-
-const addBursaryButton = document.getElementById("add-bursary");
-addBursaryButton.addEventListener("click", addBursary);

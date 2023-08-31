@@ -1,9 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
- apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
+apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
   authDomain: "e-students-764ac.firebaseapp.com",
   databaseURL: "https://e-students-764ac-default-rtdb.firebaseio.com",
   projectId: "e-students-764ac",
@@ -15,27 +14,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 
-const bursaryForm = document.getElementById("bursaryForm");
-const submitBtn = document.getElementById("submitBtn");
 const bursaryList = document.getElementById("bursaryList");
 
-submitBtn.addEventListener("click", () => {
-  const name = document.getElementById("name").value;
-  const amount = parseFloat(document.getElementById("amount").value);
-  const description = document.getElementById("description").value;
+// Function to fetch and display uploaded bursaries
+function fetchAndDisplayBursaries() {
+  onValue(ref(db, "bursaries"), (snapshot) => {
+    bursaryList.innerHTML = ""; // Clear previous content
 
-  if (name && amount && description) {
-    const newBursaryRef = push(ref(db, "bursaries"));
-    set(newBursaryRef, { name, amount, description });
+    const bursaries = snapshot.val();
+    for (const bursaryId in bursaries) {
+      const bursary = bursaries[bursaryId];
 
-    bursaryForm.reset();
-  }
-});
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `
+        <strong>${bursary.title}</strong><br>
+        Description: ${bursary.description}<br>
+        Apply Link: <a href="${bursary.applyLink}" target="_blank">Apply Now</a><br>
+      `;
+      bursaryList.appendChild(listItem);
+    }
+  });
+}
 
-// Listen for changes in the database
-ref(db, "bursaries").on("child_added", (snapshot) => {
-  const bursary = snapshot.val();
-  const listItem = document.createElement("li");
-  listItem.innerHTML = `<strong>${bursary.name}</strong> - Amount: ${bursary.amount}, Description: ${bursary.description}`;
-  bursaryList.appendChild(listItem);
-});
+// Call the function to fetch and display bursaries
+fetchAndDisplayBursaries();

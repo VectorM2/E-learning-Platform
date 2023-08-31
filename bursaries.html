@@ -6,34 +6,17 @@
   <title>Bursary Management</title>
 </head>
 <body>
-  <h1>Add Bursary</h1>
-  function createBursaryItem() {
-  const bursaryItem = document.createElement("div");
-  bursaryItem.className = "bursary";
-  bursaryItem.innerHTML = `
-    <h2 contenteditable="true">Bursary Title</h2>
-    <p contenteditable="true">Description of the bursary.</p>
-    <input type="text" placeholder="Apply Link URL">
-    <button class="apply-btn">Apply</button>
-  `;
+  <form id="bursaryForm">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" required><br>
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" required></textarea><br>
+  <label for="applyLink">Apply Link:</label>
+  <input type="url" id="applyLink" name="applyLink" required><br>
+  <button type="button" id="submitBtn">Submit</button>
+</form>
 
-  const applyButton = bursaryItem.querySelector(".apply-btn");
-  applyButton.addEventListener("click", () => {
-    const urlInput = bursaryItem.querySelector("input[type='text']");
-    const linkURL = urlInput.value;
-    if (linkURL) {
-      // Store the URL in the database
-      const newBursaryRef = push(ref(db, "bursaries"));
-      set(newBursaryRef, { title: "Bursary Title", description: "Description of the bursary", applyLink: linkURL });
-    } else {
-      alert("Please provide a valid URL.");
-    }
-  });
-
-  return bursaryItem;
-}
-
-  <h1>Bursaries</h1>
+  <h1>Uploaded Bursaries</h1>
   <ul id="bursaryList"></ul>
 
   <script src="script.js"></script>

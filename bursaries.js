@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const firebaseConfig = {
 apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
@@ -13,6 +13,8 @@ apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
+const bursariesRef = ref(db, "bursaries");
+
 
 const bursaryForm = document.getElementById("bursaryForm");
 const submitBtn = document.getElementById("submitBtn");
@@ -22,9 +24,9 @@ submitBtn.addEventListener("click", () => {
   const description = document.getElementById("description").value;
   const applyLink = document.getElementById("applyLink").value;
 
-  if (title && description && applyLink) {
-    const bursariesRef = ref(db, "bursaries");
-    push(bursariesRef, {
+ if (title && description && applyLink) {
+    const newBursaryRef = push(bursariesRef); // Create a new bursary reference
+    set(newBursaryRef, {
       title,
       description,
       applyLink
@@ -34,12 +36,11 @@ submitBtn.addEventListener("click", () => {
   }
 });
 
-
 const bursaryList = document.getElementById("bursaryList");
 
 // Function to fetch and display uploaded bursaries
 function fetchAndDisplayBursaries() {
-  onValue(ref(db, "bursaries"), (snapshot) => {
+  onValue(bursariesRef, (snapshot) => {
     bursaryList.innerHTML = ""; // Clear previous content
 
     const bursaries = snapshot.val();

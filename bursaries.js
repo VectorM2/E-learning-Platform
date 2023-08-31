@@ -14,6 +14,27 @@ apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 
+const bursaryForm = document.getElementById("bursaryForm");
+const submitBtn = document.getElementById("submitBtn");
+
+submitBtn.addEventListener("click", () => {
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const applyLink = document.getElementById("applyLink").value;
+
+  if (title && description && applyLink) {
+    const bursariesRef = ref(db, "bursaries");
+    push(bursariesRef, {
+      title,
+      description,
+      applyLink
+    });
+
+    bursaryForm.reset();
+  }
+});
+
+
 const bursaryList = document.getElementById("bursaryList");
 
 // Function to fetch and display uploaded bursaries

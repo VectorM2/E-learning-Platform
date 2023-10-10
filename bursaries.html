@@ -1,24 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bursary Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Portal</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <form id="bursaryForm">
-  <label for="title">Title:</label>
-  <input type="text" id="title" name="title" required><br>
-  <label for="description">Description:</label>
-  <textarea id="description" name="description" required></textarea><br>
-  <label for="applyLink">Apply Link:</label>
-  <input type="url" id="applyLink" name="applyLink" required><br>
-  <button type="button" id="submitBtn">Submit</button>
-</form>
 
-  <h1>Uploaded Bursaries</h1>
-  <ul id="bursaryList"></ul>
+<div class="container mt-5">
+    <h1 class="text-center">Scholarship Portal</h1>
+    <div class="row">
+        <!-- Scholarship Cards -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Scholarship 1</h5>
+                    <p class="card-text">This is a small description of Scholarship 1.</p>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal1">Read More</button>
+                </div>
+            </div>
+        </div>
 
-  <script src="script.js"></script>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Scholarship 2</h5>
+                    <p class="card-text">This is a small description of Scholarship 2.</p>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal2">Read More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more scholarship cards here -->
+
+    </div>
+</div>
+
+<!-- Modals for Scholarship Details -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal1Label">Scholarship 1 Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Details of Scholarship 1 will be shown here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal2Label">Scholarship 2 Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Details of Scholarship 2 will be shown here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap and jQuery JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
+

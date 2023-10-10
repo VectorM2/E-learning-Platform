@@ -78,85 +78,87 @@
 
     <!--hero section-->
 
-    <div class="section container d-lg-flex py-2">
-      <div class="container mt-3 min-width-700">
-        <div class="card-deck align-items-stretch">
-          <div class="row d-flex">
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">
-                  Zoom Classes
-                </div>
-                <div class="card-body">
-                  <p class="card-text">Upcoming Zoom classes:</p>
-                  <ul>
-                    <li>Zoom Class 1 - May 5, 10:00 AM</li>
-                    <li>Zoom Class 2 - May 10, 2:00 PM</li>
-                    <li>Zoom Class 3 - May 15, 3:00 PM</li>
-                    <li>Zoom Class 3 - May 15, 3:00 PM</li>
-                  </ul>
-                  <a href="zoom.html" target="_blank" rel="noopener noreferrer"
-                    class="btn btn-primary btn-block">Join Class</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">
-                  Document Upload
-                </div>
-                <div class="card-body">
-                  <p class="card-text">Upload your documents here:</p>
+  <div class="container mt-3">
+  <div class="row">
+    <!-- Zoom Classes Card -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          Zoom Classes
+        </div>
+        <div class="card-body">
+          <p class="card-text">Upcoming Zoom classes:</p>
+          <ul>
+            <li>Zoom Class 1 - May 5, 10:00 AM</li>
+            <li>Zoom Class 2 - May 10, 2:00 PM</li>
+            <li>Zoom Class 3 - May 15, 3:00 PM</li>
+            <li>Zoom Class 3 - May 15, 3:00 PM</li>
+          </ul>
+          <a href="zoom.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">Join Class</a>
+        </div>
+      </div>
+    </div>
 
-                  <form id="form">
-                    <div class="mb-3">
-                      <label for="formFile" class="form-label">Choose file</label>
-                      <input class="form-control" type="file" id="document">
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="upload">Upload</button>
-                  </form>
-                  <hr>
-                  <p>Access study documents <a href="documents.html">here</a></P>
-                </div>
-              </div>
+    <!-- Document Upload Card -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          Document Upload
+        </div>
+        <div class="card-body">
+          <p class="card-text">Upload your documents here:</p>
+          <form id="form">
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Choose file</label>
+              <input class="form-control" type="file" id="document">
             </div>
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">
-                  Quizzes and Reports
-                </div>
-                <div class="card-body">
-                  <p class="card-text">Take a quiz:</p>
-                  <form>
-                    <div class="mb-3">
-                      <label for="quizType" class="form-label">Select quiz type:</label>
-                      <select class="form-select" id="quizType">
-                        <option value="1">SCOA032 Quiz</option>
-                        <option value="2">SCOB032 Quiz</option>
-                        <option value="3">Combined Quiz</option>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="quizQuestions" class="form-label">Number of questions:</label>
-                      <input class="form-control" type="number" min="1" max="10" id="quizQuestions">
-                    </div>
-                    <button type="button" class="btn btn-primary btn-block" onclick="startQuiz()">Take Quiz</button>
+            <button type="submit" class="btn btn-primary" id="upload">Upload</button>
+          </form>
+          <hr>
+          <p>Access study documents <a href="documents.html">here</a></p>
+        </div>
+      </div>
+    </div>
 
-                    
-                  </form>
-                  
-                  <form>
-                    <div class="col-md-4">
-                       <div class="card">
-                            <div class="card-header">
-                                 Bursaries
-                     </div>
-                     <div class="card-body">
-                       <p class="card-text">Explore available bursaries:</p>
-                     <p>Find financial support for your education.</p>
-                      <a href="bursaries.html" class="btn btn-primary btn-block">Learn More</a>
-                             </div>
-                            </div>
-                     </div>
-                  </form>
-               
+    <!-- Quizzes and Reports Card -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          Quizzes and Reports
+        </div>
+        <div class="card-body">
+          <p class="card-text">Take a quiz:</p>
+          <form>
+            <div class="mb-3">
+              <label for="quizType" class="form-label">Select quiz type:</label>
+              <select class="form-select" id="quizType">
+                <option value="1">SCOA032 Quiz</option>
+                <option value="2">SCOB032 Quiz</option>
+                <option value="3">Combined Quiz</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="quizQuestions" class="form-label">Number of questions:</label>
+              <input class="form-control" type="number" min="1" max="10" id="quizQuestions">
+            </div>
+            <button type="button" class="btn btn-primary btn-block" onclick="startQuiz()">Take Quiz</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bursaries Card -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          Bursaries
+        </div>
+        <div class="card-body">
+          <p class="card-text">Explore available bursaries:</p>
+          <p>Find financial support for your education.</p>
+          <a href="bursaries.html" class="btn btn-primary btn-block">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

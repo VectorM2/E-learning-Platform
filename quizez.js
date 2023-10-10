@@ -44,13 +44,73 @@ const quizQuestions = [
   choices: ['A collection of data items, all of the same type, accessed using a common name.', 'A container for storing data values.', 'A data type that can hold only one value at a time.'],
   answer: 'A collection of data items, all of the same type, accessed using a common name.'
  },
- // Add more questions here...
+{
+  question: 'What is Artificial Intelligence (AI)?',
+  choices: ['A branch of computer science that deals with the creation of intelligent machines.', 'A programming language for building web applications.', 'A type of data structure.'],
+  answer: 'A branch of computer science that deals with the creation of intelligent machines.'
+},
+{
+  question: 'Which of the following is a machine learning algorithm?',
+  choices: ['Bubble Sort', 'Linear Regression', 'Depth-First Search', 'Binary Search'],
+  answer: 'Linear Regression'
+},
+{
+  question: 'What is a neural network in the context of AI?',
+  choices: ['A complex network of interconnected biological neurons.', 'A programming language for AI development.', 'A computational model inspired by the structure and functioning of the human brain.'],
+  answer: 'A computational model inspired by the structure and functioning of the human brain.'
+},
+{
+  question: 'What does the term "latency" refer to in computer networks?',
+  choices: ['The time it takes for data to travel from source to destination.', 'The amount of data that can be transmitted over the network.', 'The security measures applied to network communication.'],
+  answer: 'The time it takes for data to travel from source to destination.'
+},
+{
+  question: 'What is DNS in the context of networking?',
+  choices: ['Dynamic Network Services', 'Domain Name System', 'Data Network Security', 'Digital Network Services'],
+  answer: 'Domain Name System'
+},
+{
+  question: 'What is a firewall?',
+  choices: ['A physical barrier that prevents unauthorized access to a network.', 'A software or hardware-based network security system.', 'A high-speed network connection.'],
+  answer: 'A software or hardware-based network security system.'
+},
+{
+  question: 'What is the purpose of the OSI model in networking?',
+  choices: ['To standardize networking protocols and facilitate communication between different systems.', 'To design user interfaces for operating systems.', 'To manage memory allocation in computer systems.'],
+  answer: 'To standardize networking protocols and facilitate communication between different systems.'
+},
+{
+  question: 'What is a packet in the context of computer networking?',
+  choices: ['A unit of data transmitted over a network.', 'A type of computer virus.', 'A storage device for digital data.'],
+  answer: 'A unit of data transmitted over a network.'
+},
+{
+  question: 'What is a MAC address?',
+  choices: ['Media Access Control address; a unique identifier assigned to network interfaces for communications on the physical network segment.', 'Memory Allocation Code address in programming.', 'A type of computer virus.'],
+  answer: 'Media Access Control address; a unique identifier assigned to network interfaces for communications on the physical network segment.'
+},
+{
+  question: 'In the context of programming, what is a recursive function?',
+  choices: ['A function that calls itself during its execution.', 'A function that performs mathematical calculations.', 'A function with a high level of complexity.'],
+  answer: 'A function that calls itself during its execution.'
+},
+{
+  question: 'What is the purpose of the SQL language?',
+  choices: ['To manage and manipulate relational databases.', 'To create web page layouts.', 'To develop artificial intelligence algorithms.'],
+  answer: 'To manage and manipulate relational databases.'
+},
+{
+  question: 'What is cloud computing?',
+  choices: ['A technology that allows access to computing resources over the internet.', 'A type of weather phenomenon.', 'A form of wireless communication.'],
+  answer: 'A technology that allows access to computing resources over the internet.'
+},
+
 ];
 
 function startQuiz() {
  // Get the quiz type and number of questions from the form
  const quizType = document.getElementById('quizType').value;
- const quizQuestionsInput = document.getElementById('quizQuestions').value;
+ let quizQuestionsInput = document.getElementById('quizQuestions').value;
 
  // Make sure the quiz questions input field is not empty
  if (!quizQuestionsInput) {
@@ -67,11 +127,8 @@ function startQuiz() {
    return;
  }
 
- // Get the quiz questions
- const questions = quizQuestions.slice(0, numQuestions);
-
- // Shuffle the questions
- shuffleArray(questions);
+ shuffleArray(quizQuestions);
+const questions = quizQuestions.slice(0, numQuestions);
 
  // Create the quiz HTML
  let quizHTML = '';
@@ -103,58 +160,57 @@ function startQuiz() {
 
  // Set the quiz HTML
  document.getElementById('quiz').innerHTML = quizHTML;
+
 }
 
 
 function gradeQuiz() {
- // Get the quiz questions and answers from the form
- const quizQuestionsInput = document.getElementById('quizQuestions').value;
- const numQuestions = parseInt(quizQuestionsInput);
- const answers = [];
- for (let i = 0; i < numQuestions; i++) {
-   const answerInput = document.querySelector(`input[name=answer${i}]:checked`);
-   if (!answerInput) {
-     alert(`Please answer question ${i + 1}.`);
-     return;
-   }
-   const answer = answerInput.value.trim().toLowerCase();
-   answers.push(answer);
- }
+  // Get the quiz questions and answers from the form
+  const quizQuestionsInput = document.getElementById('quizQuestions').value;
+  const numQuestions = parseInt(quizQuestionsInput);
+  const answers = [];
+  for (let i = 0; i < numQuestions; i++) {
+    const answerInput = document.querySelector(`input[name=answer${i}]:checked`);
+    if (!answerInput) {
+      alert(`Please answer question ${i + 1}.`);
+      return;
+    }
+    const answer = answerInput.value;
+    answers.push(answer);
+  }
 
- // Grade the quiz
- let numCorrect = 0;
- for (let i = 0; i < numQuestions; i++) {
-   if (answers[i] === quizQuestions[i].answer.toLowerCase()) {
-     numCorrect++;
-   }
- }
- const score = Math.round(numCorrect / numQuestions * 100);
+  // Grade the quiz
+  let numCorrect = 0;
+  for (let i = 0; i < numQuestions; i++) {
+    if (answers[i] === quizQuestions[i].answer) {
+      numCorrect++;
+    }
+  }
+  const score = Math.round((numCorrect / numQuestions) * 100);
 
- // Display the results to the user
- const quizHTML = `
- <div class="card m-5">
- <div class="card-header">
-   Reports
- </div>
- <div class="card-body">
- <h4>You scored ${score}% on the quiz!</h4>
-   <p class="card-text">You got ${numCorrect} out of ${numQuestions} questions correct</p>
-</div>
-</div?
+  // Display the results to the user
+  const quizHTML = `
+    <div class="card m-5">
+      <div class="card-header">
+        Reports
+      </div>
+      <div class="card-body">
+        <h4>You scored ${score}% on the quiz!</h4>
+        <p class="card-text">You got ${numCorrect} out of ${numQuestions} questions correct</p>
+      </div>
+    </div>
+  `;
 
-
-   
-  
- `;
- document.getElementById('quiz').innerHTML = quizHTML;
+  document.getElementById('quiz').innerHTML = quizHTML;
 }
+
 
 
 
 // Define a function to shuffle an array
 function shuffleArray(array) {
- for (let i = array.length - 1; i > 0; i--) {
-  const j = Math.floor(Math.random() * (i + 1));
-  [array[i], array[j]] = [array[j], array[i]];
- }
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }

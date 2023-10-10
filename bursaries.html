@@ -6,7 +6,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
 
 <script>
-    var firebaseConfig = {
+    const firebaseConfig = {
   apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
   authDomain: "e-students-764ac.firebaseapp.com",
   databaseURL: "https://e-students-764ac-default-rtdb.firebaseio.com",
@@ -51,7 +51,7 @@
 
 <div class="top-container">
     <div class="container">
-        <h1 class="text-center">Scholarship Portal</h1>
+        <h1 class="text-center">Bursaries Portal</h1>
     </div>
 </div>
 
@@ -102,7 +102,7 @@
 
 <div class="bottom-container">
     <div class="container">
-        <p class="text-center">Apply for these scholarships to support your education.</p>
+        <p class="text-center">Apply for these Bursaries to support your education.</p>
     </div>
 </div>
 
@@ -309,6 +309,21 @@
     document.getElementById('bursaryTitle').value = '';
     document.getElementById('bursaryDescription').value = '';
   });
+
+    function saveBursary(title, description) {
+  var newBursaryRef = database.ref('bursaries').push();
+  newBursaryRef.set({
+    title: title,
+    description: description
+  }, function (error) {
+    if (error) {
+      console.error('Error adding bursary:', error);
+    } else {
+      console.log('Bursary added successfully');
+    }
+  });
+}
+
 </script>
 
 <!-- Include Bootstrap and jQuery JS -->

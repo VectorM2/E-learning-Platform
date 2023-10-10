@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+
+<script>
+    var firebaseConfig = {
+  apiKey: "AIzaSyAzh0qapVg-vuD5kPGTSUwZp6n9ds2ksd4",
+  authDomain: "e-students-764ac.firebaseapp.com",
+  databaseURL: "https://e-students-764ac-default-rtdb.firebaseio.com",
+  projectId: "e-students-764ac",
+  storageBucket: "e-students-764ac.appspot.com",
+  messagingSenderId: "458914599582",
+  appId: "1:458914599582:web:e3ec37a1c12c97217d618f"
+};
+</script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bursaries Portal</title>
@@ -61,7 +77,24 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Add a New Bursary</h5>
+      <form id="bursaryForm">
+        <div class="form-group">
+          <label for="bursaryTitle">Title</label>
+          <input type="text" class="form-control" id="bursaryTitle" placeholder="Bursary Title" required>
+        </div>
+        <div class="form-group">
+          <label for="bursaryDescription">Description</label>
+          <textarea class="form-control" id="bursaryDescription" rows="3" placeholder="Bursary Description" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Bursary</button>
+      </form>
+    </div>
+  </div>
+</div>
         <!-- Add more scholarship cards here -->
 
     </div>
@@ -251,10 +284,38 @@
     </div>
 </div>
 
+<script>
+  // Reference to the Firebase database
+  var database = firebase.database();
+
+  // Function to save bursary data to Firebase
+  function saveBursary(title, description) {
+    var newBursaryRef = database.ref('bursaries').push();
+    newBursaryRef.set({
+      title: title,
+      description: description
+    });
+  }
+
+  // Event listener for the bursary form submission
+  document.getElementById('bursaryForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var bursaryTitle = document.getElementById('bursaryTitle').value;
+    var bursaryDescription = document.getElementById('bursaryDescription').value;
+
+    saveBursary(bursaryTitle, bursaryDescription);
+
+    // Clear form inputs
+    document.getElementById('bursaryTitle').value = '';
+    document.getElementById('bursaryDescription').value = '';
+  });
+</script>
+
 <!-- Include Bootstrap and jQuery JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 
 </body>
 </html>

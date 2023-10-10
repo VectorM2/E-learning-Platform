@@ -6,9 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>e-student platform</title>
+  <!-- Add Bootstrap CSS link -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Add your custom style.css -->
   <link href="style.css" rel="stylesheet">
-  <link href="plugins/css/bootstrap.css" rel="stylesheet">
-  <script src="plugins/js/bootstrap.bundle.js"></script>
+  <!-- Add Bootstrap JS script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Add your other styles and scripts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet">
@@ -30,20 +34,21 @@
         <a class="navbar-brand" href="#"><img src="graphics/logo.png" alt="" width="200rem"
             class="d-inline-block align-text-top"></a>
 
-            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Start Here
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Zoom Classes</a></li>
-                    <li><a class="dropdown-item" href="#">Quizzes</a></li>
-                    <li><a class="dropdown-item" href="bursaries.html">Bursaries</a></li>
-                  </ul>
-                </li>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Start Here
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Zoom Classes</a></li>
+                <li><a class="dropdown-item" href="#">Quizzes</a></li>
+                <li><a class="dropdown-item" href="bursaries.html">Bursaries</a></li>
               </ul>
-            </div>
+            </li>
+          </ul>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -58,16 +63,16 @@
               <a class="nav-link" id="userEmail">VectorM</a>
             </li>
             <li class="nav-item">
-             
-              
+
+
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login.html">Logout</a>
             </li>
           </ul>
-          
+
           <a class="nav-link"><img id="userProfilePicture"></img></a>
-        </div> 
+        </div>
       </div>
     </nav>
 
@@ -90,7 +95,8 @@
                     <li>Zoom Class 3 - May 15, 3:00 PM</li>
                     <li>Zoom Class 3 - May 15, 3:00 PM</li>
                   </ul>
-                  <a href="zoom.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">Join Class</a>
+                  <a href="zoom.html" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-primary btn-block">Join Class</a>
                 </div>
               </div>
             </div>
@@ -136,93 +142,4 @@
                     </div>
                     <button type="button" class="btn btn-primary btn-block" onclick="startQuiz()">Take Quiz</button>
                   </form>
-                </div>
-              </div>
-            </div>
-
-
-
-          </div>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div class="container">
-        <div id="quiz"></div>
-      </div>
-
-
-
-    </div>
-
-
-    <!--footer-->
-    <footer class="footer mt-auto py-3 bg-light shadow-sm">
-      <div class="container">
-        <span class="text-muted">All rights reserved | Copyrights &copy; e-student 2023</span>
-      </div>
-
-    </footer>
-  </section>
-
-  <!-- Modal -->
-  <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="quizModalLabel">COMPUTER SCIENCE Quiz</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="quiz"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</body>
-
-</html>
-
-<style>
-  #userProfilePicture {
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  transition: transform 0.3s ease;
-  border: blue solid 2px;
-}
-
-#userProfilePicture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-#userProfilePicture::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-#userProfilePicture:hover {
-  transform: scale(1.1);
-}
-
-#userProfilePicture:hover::before {
-  opacity: 1;
-}
-  
-</style>
+               

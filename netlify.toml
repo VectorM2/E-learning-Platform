@@ -1,2 +1,4 @@
-# Custom 404 error pages
-/en/* /en/404Error.html 404
+[[redirects]]
+  from = "/*"
+  to = "/404Error.html" #-change-path-here-and-delete-this-comment
+  status = 404
